@@ -1,0 +1,6 @@
+<VirtualHost *:<%= node['home']['port']%>>
+    ServerAdmin webmaster@localhost
+    DocumentRoot <%= node['home']['webroot']%>/<%= node['home']['projectname']%>
+    ErrorLog     <%= node['home']['webroot']%>/error.log
+    CustomLog    <%= node['home']['webroot']%>/access.log combined
+</VirtualHost>
