@@ -5,22 +5,34 @@
 # Copyright (c) 2017 The Authors, All Rights Reserved.
 
 
-#Using the chef vault 
+#Using the chef vault
 
-chef_gem 'chef-vault' do 
+chef_gem 'chef-vault' do
  compile_time true if respond_to?(:compile_time)
-end 
+end
 
 require 'chef-vault'
 
-%w(madhu).each do | user | 
-  user_properties = ChefVault::Item.load("homeusers-users", "#{user}")
-
-  user "#{user}" do 
-    home "/home/#{user_properties['id']}"
-    shell '/bin/bash'
-    password user_properties['password']
-    manage_home true 
-    action :create
-  end 
- end 
+if node['fqdn'].include?("lin")
+  %w(madhu).each do | user |
+   user_properties = ChefVault::Item.load("homeusers-users", "#{user}")
+   user "#{user}" do
+     home "/home/#{user_properties['id']}"
+     shell '/bin/bash'
+     password user_properties['password']
+     manage_home true
+     action :create
+   end
+  end
+else
+   %w(madhu).each do | user |
+    user_properties = data_bag_item("homeusers-dev", "#{user}")
+    user "#{user}" do
+      home "/home/#{user_properties['id']}"
+      shell '/bin/bash'
+      password user_properties['password']
+      manage_home true
+      action :create
+    end
+   end
+end     
