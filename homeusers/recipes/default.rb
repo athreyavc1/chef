@@ -13,7 +13,7 @@ end
 
 require 'chef-vault'
 
-if node['fqdn'].include?("lin")
+if node['platform'] == "ubuntu"
   %w(madhu).each do | user |
    user_properties = ChefVault::Item.load("homeusers-users", "#{user}")
    user "#{user}" do
@@ -35,4 +35,4 @@ else
       action :create
     end
    end
-end     
+end
