@@ -12,19 +12,7 @@ chef_gem 'chef-vault' do
 end
 
 require 'chef-vault'
-
-if node['platform'] == "ubuntu"
-  %w(madhu).each do | user |
-   user_properties = ChefVault::Item.load("homeusers-users", "#{user}")
-   user "#{user}" do
-     home "/home/#{user_properties['id']}"
-     shell '/bin/bash'
-     password user_properties['password']
-     manage_home true
-     action :create
-   end
-  end
-else
+if node['platform'] =! "ubuntu"
    %w(madhu).each do | user |
     user_properties = data_bag_item("homeusers-dev", "#{user}")
     user "#{user}" do
@@ -35,4 +23,15 @@ else
       action :create
     end
    end
+else
+  %w(madhu).each do | user |
+   user_properties = ChefVault::Item.load("homeusers-users", "#{user}")
+   user "#{user}" do
+     home "/home/#{user_properties['id']}"
+     shell '/bin/bash'
+     password user_properties['password']
+     manage_home true
+     action :create
+   end
+  end
 end
