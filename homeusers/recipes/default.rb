@@ -12,7 +12,7 @@ chef_gem 'chef-vault' do
 end
 
 require 'chef-vault'
-if node['platform'] != "ubuntu"
+if node['platform'] == "mac_os_x"
    %w(madhu).each do | user |
     user_properties = data_bag_item("homeusers-dev", "#{user}")
     user "#{user}" do
