@@ -25,7 +25,7 @@ if node['platform'] == "mac_os_x"
    end
 else
   %w(madhu).each do | user |
-   user_properties = ChefVault::Item.load("homeusers-users", "#{user}")
+   user_properties = ChefVault::Item.load("homeusers-test", "#{user}")
    user "#{user}" do
      home "/home/#{user_properties['id']}"
      shell '/bin/bash'
