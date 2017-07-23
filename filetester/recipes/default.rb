@@ -6,3 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+Chef::Resource.send(:include, Helper)
+
+file '/home/vagrant/testfilexoo'
+	content artifact_link
+end
