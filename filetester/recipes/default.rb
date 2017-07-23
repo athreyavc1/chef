@@ -14,6 +14,7 @@ node.default['home']['projectname'] = 'lacegant'
 node.default['home']['port']		= '80'
 
 home_site_deploy "lacegant" do 
+	deploy_to		"/opt/#{node['home']['projectname']}.zip"
 	deploy_path 	node['home']['webroot']
 	project_name	node['home']['projectname']
 	web_root		node['home']['webroot']

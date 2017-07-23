@@ -39,5 +39,5 @@ end
 
 zipfile "/opt/#{node['home']['projectname']}.zip" do
 	into "#{node['home']['webroot']}"
-	not_if {  ::Dir.exist?("#{node['home']['webroot']}/#{node['home']['projectname']}")}
+	not_if {  ::Dir["#{node['home']['webroot']}/#{node['home']['projectname']}"].length > 0}
 end
