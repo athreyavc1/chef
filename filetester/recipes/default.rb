@@ -7,8 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
-Chef::Resource.send(:include, Helper)
+node.default['home']['webroot'] 	= '/var/www/html'
+node.default['home']['appowner']	= 'www-data'
+node.default['home']['appowner']    = 'www-data'
+node.default['home']['projectname'] = 'lacegant'
+node.default['home']['port']		= '80'
 
-file '/home/vagrant/testfilexoo' do
-	content artifact_link
+home_site_deploy "lacegant" do 
+	deploy_path 	node['home']['webroot']
+	project_name	node['home']['projectname']
+	web_root		node['home']['webroot']
+	site_template   'mytemplate.erb'
+	site_owner		node['home']['appowner']
 end
