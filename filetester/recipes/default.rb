@@ -9,6 +9,6 @@
 
 Chef::Resource.send(:include, Helper)
 
-file '/home/vagrant/testfilexoo'
+file '/home/vagrant/testfilexoo' do
 	content artifact_link
 end
