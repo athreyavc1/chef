@@ -16,8 +16,9 @@ describe 'test_httpd::default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
+
     it 'includes the httpd recipe' do
-      expect(chef_run).to include_recipe('httpd::default')
+      expect { chef_run }.to include_recipe('httpd::default')
     end
   end
 end
