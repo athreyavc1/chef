@@ -20,5 +20,10 @@ describe 'test_httpd::default' do
     it 'includes the httpd recipe' do
       expect(chef_run).to include_recipe('httpd::default')
     end
+
+    it 'installs httpd' do
+      expect(chef_run).to install_package('httpd')
+    end
+    
   end
 end
