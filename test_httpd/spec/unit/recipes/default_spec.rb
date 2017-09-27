@@ -18,7 +18,7 @@ describe 'test_httpd::default' do
     end
 
     it 'includes the httpd recipe' do
-      expect { chef_run }.to include_recipe('httpd::default')
+      expect(chef_run).to include_recipe('httpd::default')
     end
   end
 end
