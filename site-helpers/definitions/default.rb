@@ -34,10 +34,14 @@ define :home_site_deploy, :deploy_path => nil, :project_name => nil, :web_root =
   action :create
 end
 
-  zipfile deploy_to_file do
-	 into "#{site_root}/#{site_name}"
-	 not_if {  ::Dir["#{site_root}/#{site_name}/*"].length > 0}
-    end
+  #zipfile deploy_to_file do
+	 #into "#{site_root}/#{site_name}"
+	 #not_if {  ::Dir["#{site_root}/#{site_name}/*"].length > 0}
+    #end
+
+    artifact_deploy site_name do 
+      deploy_to "#{site_root}/#{site_name}"
+      
 
     web_app site_name do
 	 template mytemplte
