@@ -1,15 +1,15 @@
 #
-# Cookbook Name:: test_httpd
+# Cookbook Name:: linuxusers
 # Spec:: default
 #
-# Copyright (c) 2017 Kurt Wallander, All Rights Reserved.
+# Copyright (c) 2018 The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'test_httpd::default' do
+describe 'linuxusers::default' do
   context 'When all attributes are default, on an unspecified platform' do
-    let(:chef_run) 
-      runner = ChefSpec::ServerRunner.new(platform: 'centos', version: '7.3')
+    let(:chef_run) do
+      runner = ChefSpec::ServerRunner.new
       runner.converge(described_recipe)
     end
 
@@ -17,4 +17,4 @@ describe 'test_httpd::default' do
       expect { chef_run }.to_not raise_error
     end
   end
-end 
+end

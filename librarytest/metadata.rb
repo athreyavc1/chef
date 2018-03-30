@@ -1,0 +1,7 @@
+name 'librarytest'
+maintainer 'Kurt Wallander'
+maintainer_email 'kurt.wallander@aol.com'
+license 'all_rights'
+description 'Installs/Configures librarytest'
+long_description 'Installs/Configures librarytest'
+version '0.1.0'

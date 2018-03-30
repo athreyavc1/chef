@@ -1,0 +1,7 @@
+name 'gemtest'
+maintainer 'Kurt Wallander'
+maintainer_email 'kurt.wallander@aol.com'
+license 'all_rights'
+description 'Installs/Configures gemtest'
+long_description 'Installs/Configures gemtest'
+version '0.1.0'
