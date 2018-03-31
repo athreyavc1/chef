@@ -29,7 +29,7 @@ openvpn_conf 'server' do
   config  node['openvpn']['config']
 end
 
-%w(server.crt dh.pem server.key,ca.crt).each do | line |
+%w(server.crt dh.pem server.key ca.crt).each do | line |
   cookbook_file "/etc/openvpn/#{line}" do
     source "#{line}"
     mode 0600
