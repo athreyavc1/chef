@@ -20,8 +20,9 @@ node.default['openvpn']['config'] = { "port": node['openvpn']['port'],
           "dh":  "#{node['openvpn']['config_dir']}/dh.pem",
           "user": node['openvpn']['user'],
           "group": node['openvpn']['group'],
-          "push":  ["\"dhcp-option DNS 8.8.8.8\"", "\"dhcp-option DNS 8.8.4.4\""]
-        }
+          "push":  ["\"dhcp-option DNS 8.8.8.8\"", "\"dhcp-option DNS 8.8.4.4\""],
+          "dev tun"
+          }
 
 openvpn_conf 'server' do
   config  node['openvpn']['config']
