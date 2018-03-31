@@ -16,7 +16,7 @@ node.default['openvpn']['config'] = {
           "local": node['ipaddress'],
           "port": node['openvpn']['port'],
           "server":  "192.168.1.0  255.255.255.0",
-          "verb": "3",
+          "verb": "4",
           "cert":  "#{node['openvpn']['config_dir']}/server.crt",
           "ca": "#{node['openvpn']['config_dir']}/ca.crt",
           "key": "#{node['openvpn']['config_dir']}/server.key",
