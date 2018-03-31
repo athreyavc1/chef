@@ -3,7 +3,7 @@
 
 # Please refer to the OpenVPN documentation for details on
 # configuration settings.
-
+comp-lzo
 <%- @config.sort.each do |key, values| -%>
 <%- [*values].each do |value| -%>
 <%- next if value.nil? -%>
@@ -35,3 +35,5 @@ push "route <%= route %>"
 <%= line %>
   <% end -%>
 <% end %>
+persist-key
+persist-tun
