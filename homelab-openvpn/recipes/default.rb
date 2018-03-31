@@ -32,6 +32,7 @@ node.default['openvpn']['config'] = {
 
 openvpn_conf 'server' do
   config  node['openvpn']['config']
+  cookbook 'homelab-openvpn'
 end
 
 %w(server.crt dh.pem server.key ca.crt).each do | line |
