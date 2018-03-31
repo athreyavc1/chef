@@ -4,7 +4,7 @@
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
-#node.default['openvpn']['port'] = "1194"
+node.default['openvpn']['port'] = "1194"
 #node.default['openvpn']['user'] = "vagrant"
 #node.default['openvpn']['group'] = "vagrant"
 #node.default['openvpn']['config_dir'] = "/etc/openvpn"
@@ -12,7 +12,7 @@ include_recipe 'openvpn::install'
 
 node.default['openvpn']['configure_default_server'] = false
 
-node.default['openvpn']['config'] = { "port": "1194",
+node.default['openvpn']['config'] = { "port": "#{node['openvpn']['port']},
           "server":  "192.168.1.0  255.255.255.0",
           "verb": "3",
           "cert":  "/etc/openvpn/server.crt",
