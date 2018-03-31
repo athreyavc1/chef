@@ -36,7 +36,7 @@ end
 #          "push":  ["\"dhcp-option DNS 8.8.8.8\"", "\"dhcp-option DNS 8.8.4.4\""]
 #        }
 
-%w(server.crt,dh.pem,server.key).each do | line |
+%w(server.crt dh.pem server.key).each do | line |
   cookbook_file "/etc/openvpn/#{line}" do
     source "#{line}"
     mode 0600
