@@ -32,7 +32,6 @@ node.default['openvpn']['config'] = {
 
 openvpn_conf 'server' do
   config  node['openvpn']['config']
-  template 'openvpn.erb'
   cookbook 'homelab-openvpn'
 end
 
