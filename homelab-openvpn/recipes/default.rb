@@ -37,6 +37,4 @@ end
   end
 end
 
-#openvpn_conf 'server' do
-#  config  node['openvpn']['config']
-#end
+include_recipe "openvpn::server"
