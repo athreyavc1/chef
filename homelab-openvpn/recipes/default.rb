@@ -16,8 +16,8 @@ node.default['openvpn']['config'] = { "port": "1194",
           "proto": "udp",
           "verb":  "3",
           "cert":  "/etc/openvpn/server.crt",
-          "key" :  "/etc/openvpn//server.key",
-          "dh":    "/etc/openvpn//dh.pem",
+          "key" :  "/etc/openvpn/server.key",
+          "dh":    "/etc/openvpn/dh.pem",
           "user":  "vagrant",
           "group": "vagrant",
           "push":  ["\"dhcp-option DNS 8.8.8.8\"", "\"dhcp-option DNS 8.8.4.4\""]
@@ -31,6 +31,7 @@ node.default['openvpn']['config'] = { "port": "1194",
     group "vagrant"
   end
 end
+
 openvpn_conf 'server' do
   config  node['openvpn']['config']
 end
