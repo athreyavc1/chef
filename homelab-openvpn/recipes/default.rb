@@ -39,7 +39,7 @@ end
 %w(server.crt,dh.pem,server.key).each do | line |
   cookbook_file "/etc/openvpn/#{line}" do
     source "#{line}"
-    chmod 0600
+    mode 0600
     owner "vagrant"
     group "vagrant"
   end
