@@ -16,19 +16,20 @@ node.default['openvpn']['config'] = { "port": node['openvpn']['port'],
           "server":  "192.168.1.0  255.255.255.0",
           "verb": "3",
           "cert":  "#{node['openvpn']['config_dir']}/server.crt",
+          "ca": "#{node['openvpn']['config_dir']}/ca.crt",
           "key": "#{node['openvpn']['config_dir']}/server.key",
           "dh":  "#{node['openvpn']['config_dir']}/dh.pem",
           "user": node['openvpn']['user'],
           "group": node['openvpn']['group'],
           "push":  ["\"dhcp-option DNS 8.8.8.8\"", "\"dhcp-option DNS 8.8.4.4\""],
-          "dev tun"
+          "dev": "tun"
           }
 
 openvpn_conf 'server' do
   config  node['openvpn']['config']
 end
 
-%w(server.crt dh.pem server.key).each do | line |
+%w(server.crt dh.pem server.key,ca.crt).each do | line |
   cookbook_file "/etc/openvpn/#{line}" do
     source "#{line}"
     mode 0600
