@@ -42,6 +42,7 @@ end
     mode 0600
     owner "vagrant"
     group "vagrant"
+    action :create
   end
 end
 
