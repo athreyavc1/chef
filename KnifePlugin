@@ -1,0 +1,48 @@
+require 'chef/knife'
+require 'chef'
+require 'colorize'
+
+module Awesome
+    class AwesomeReset < Chef::Knife
+        banner "knife awesome reset [SOURCE_ENV] [TARGET_ENV]\n
+        
+        USE THIS PLUGIN WITH CAUTION, as it changes the environment  directly on the CHEF Server.
+        IF YOU WANT TO REVERT, just upload the environment from your local repository using \n
+        knife environment  from file <ENVIRONMENT JSON File here>
+        "
+      deps do 
+        require 'chef/environment'
+      end 
+
+      def run 
+        query = name_args 
+
+        if query.length != 2 
+            puts "Missing Source or the Target Environment, Please check".red
+            exit
+        end 
+        begin 
+            source_environment=Chef::Environment.load(query[0])
+        rescue Net::HTTPServerException
+            puts "#{query[0]} is NOT FOUND on your CHEF Server, Please check!".red
+            exit
+        end
+        begin 
+            target_environment=Chef::Environment.load(query[1])
+        rescue Net::HTTPServerException
+            puts "#{query[1]} is NOT FOUND on your Chef Server, Please check!".red
+            exit
+        end  
+        target_environment.cookbook_versions.each_key do | ver |
+            target_environment.cookbook_versions[ver] = source_environment.cookbook_versions[ver]
+        end
+        begin 
+            target_environment.save
+            puts "Environment Reset of #{query[1]} is complete".green
+        rescue 
+            puts "Something didn't work, #{query[1]} did not change".red
+        end
+      end 
+    end 
+end 
+
